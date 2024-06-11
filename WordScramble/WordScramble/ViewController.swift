@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     var allWords = [String]()
-    var usedWors = [String]()
+    var usedWords = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class ViewController: UITableViewController {
     
     func startGame() {
         title = allWords.randomElement()
-        usedWors.removeAll(keepingCapacity: true)
+        usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
     }
     
@@ -41,12 +41,12 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usedWors.count
+        return usedWords.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-        cell.textLabel?.text = usedWors[indexPath.row]
+        cell.textLabel?.text = usedWords[indexPath.row]
         return cell
     }
     
@@ -70,7 +70,7 @@ class ViewController: UITableViewController {
         if isPossible(word: lowerAnswer){
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
-                    usedWors.insert(answer, at: 0)
+                    usedWords.insert(answer, at: 0)
                     
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
